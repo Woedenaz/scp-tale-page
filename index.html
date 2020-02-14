@@ -2,19 +2,39 @@
 <html class=" -moz-" lang="en">
 
 <head>
-	<title>SCP HEAT</title>
+	<title>SCP Tales Page</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<base target="_parent" />
 	<link rel="stylesheet" type="text/css" href="./src/css/main.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/b-1.6.1/fh-3.1.6/kt-2.5.1/r-2.2.3/rg-1.1.1/sc-2.0.1/sp-1.0.1/datatables.css"/>
 </head>
 
 <body>
+	<table id="scp-tales-table" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date posted</th>
+                <th>Author</th>
+                <th>Tags</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Title</th>
+                <th>Date posted</th>
+                <th>Author</th>
+                <th>Tags</th>
+                <th>Rating</th>
+            </tr>
+        </tfoot>
+    </table>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://jsapi.wikidot.com/local--code/js/4"></script>
-	<script type="module" src="./src/js/config.js"></script>
-	<script type="module" src="./src/js/main.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/b-1.6.1/fh-3.1.6/kt-2.5.1/r-2.2.3/rg-1.1.1/sc-2.0.1/sp-1.0.1/datatables.js"></script>
+	<script src="./src/js/main.js"></script>
 </body>
 
 </html>

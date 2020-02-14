@@ -16,3 +16,5 @@ package-lock.json
 .vscode/
 .bash_profile
 .bash_profileeval
+*.pyc
+*.pyc
