@@ -8,17 +8,6 @@ from datetime import datetime
 from time import sleep
 from xmlrpc.client import ServerProxy
 
-# Randomly select a time between 20 to 30 minutes
-# before sleeping.
-random_time_duration = random.randint(25,30)
-
-# Randomly sleep between 60 to 120 seconds.
-sleep_duration = random.randint(80,90)
-
-# This is the start time of of loop used to track
-# how much time has passed.
-old_time = datetime.now()
-
 #open file in working directory
 if sys.platform.startswith('win'):
     __location__ = os.getcwd()
@@ -57,25 +46,8 @@ groups_len = len(groups)
 
 #placing data into JSON file and active JSON string
 for x in range(groups_len):
-    while True:
-        # Check if the randomly selected duration has
-        # passed before running your code block.
-        if (datetime.now()-old_time).total_seconds() > random_time_duration:
-            sleep(sleep_duration)
-
-            # Reset all the time variables so the loop works
-            # again.
-            random_time_duration = random.randint(25,30)
-            sleep_duration = random.randint(80,90)
-            old_time = datetime.now()
-            print("wait: " + str(sleep_duration))
-
-        else:
-            # Put your code in here.
-            mine = s.pages.get_meta({"site": "scp-wiki", "pages": groups[x]})
-            json_fragment.update(mine)
-            print("wait: " + str(sleep_duration))
-            pass
+    mine = s.pages.get_meta({"site": "scp-wiki", "pages": groups[x]})
+    json_fragment.update(mine)
 
 #opening active JSON string
 sorted_data = sorted(json_fragment, key=lambda x: json_fragment[x]['revisions'], reverse=True)
