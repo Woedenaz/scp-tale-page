@@ -3,7 +3,21 @@ import os
 import sys
 import json
 import itertools
+import random
+from datetime import datetime
+from time import sleep
 from xmlrpc.client import ServerProxy
+
+# Randomly select a time between 20 to 30 minutes
+# before sleeping.
+random_time_duration = random.randint(25,30)
+
+# Randomly sleep between 60 to 120 seconds.
+sleep_duration = random.randint(80,90)
+
+# This is the start time of of loop used to track
+# how much time has passed.
+old_time = datetime.now()
 
 #open file in working directory
 if sys.platform.startswith('win'):
@@ -11,7 +25,7 @@ if sys.platform.startswith('win'):
 else:
     __location__ = os.path.normpath(os.getcwd() + os.sep + os.pardir)
 
-filename = os.path.join(__location__ + "/src/json/tales.json")
+filename = os.path.join(__location__ + "/src/json/revisions.json")
 filename = os.path.normpath(filename)
 print(filename)
 json_fragment = {}
@@ -35,7 +49,7 @@ def grouper(inputs, n):
 
 #calling wikidot API
 s = ServerProxy('https://' + config.wikidot_username + ':' + config.wikidot_api_key + "@www.wikidot.com/xml-rpc-api.php")
-pages = s.pages.select({"site": "scp-wiki","tags_all": ["tale"]})
+pages = s.pages.select({"site": "scp-wiki"})
 
 #calling grouping function
 groups = grouper(pages, 10)
@@ -43,11 +57,28 @@ groups_len = len(groups)
 
 #placing data into JSON file and active JSON string
 for x in range(groups_len):
-    mine = s.pages.get_meta({"site": "scp-wiki", "pages": groups[x]})
-    json_fragment.update(mine)
+    while True:
+        # Check if the randomly selected duration has
+        # passed before running your code block.
+        if (datetime.now()-old_time).total_seconds() > random_time_duration:
+            sleep(sleep_duration)
+
+            # Reset all the time variables so the loop works
+            # again.
+            random_time_duration = random.randint(25,30)
+            sleep_duration = random.randint(80,90)
+            old_time = datetime.now()
+            print("wait: " + str(sleep_duration))
+
+        else:
+            # Put your code in here.
+            mine = s.pages.get_meta({"site": "scp-wiki", "pages": groups[x]})
+            json_fragment.update(mine)
+            print("wait: " + str(sleep_duration))
+            pass
 
 #opening active JSON string
-sorted_data = sorted(json_fragment, key=lambda x: json_fragment[x]['created_at'], reverse=True)
+sorted_data = sorted(json_fragment, key=lambda x: json_fragment[x]['revisions'], reverse=True)
 json_data = json.dumps(
     [json_fragment[x] 
         for x in sorted_data
