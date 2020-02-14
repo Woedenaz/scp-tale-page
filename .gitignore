@@ -1,6 +1,10 @@
 #config
 src/python/config.py
 
+#python
+*.pyc
+*/__pycache__
+
 # NPM
 node_modules/
 package-lock.json
