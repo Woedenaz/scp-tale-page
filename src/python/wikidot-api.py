@@ -6,9 +6,14 @@ import itertools
 from xmlrpc.client import ServerProxy
 
 #open file in working directory
-__location__ = os.path.normpath(os.getcwd() + os.sep + os.pardir)
+if sys.platform.startswith('win'):
+    __location__ = os.getcwd()
+else:
+    __location__ = os.path.normpath(os.getcwd() + os.sep + os.pardir)
 
-filename = os.path.join(__location__, "SCP-Tales-Page/src/json/scp-joke.json")
+filename = os.path.join(__location__ + "/src/json/tales.json")
+filename = os.path.normpath(filename)
+print(filename)
 json_fragment = {}
 json_data = {}
 
@@ -30,7 +35,7 @@ def grouper(inputs, n):
 
 #calling wikidot API
 s = ServerProxy('https://' + config.wikidot_username + ':' + config.wikidot_api_key + "@www.wikidot.com/xml-rpc-api.php")
-pages = s.pages.select({"site": "scp-wiki","tags_all": ["scp", "joke"]})
+pages = s.pages.select({"site": "scp-wiki","tags_all": ["tale"]})
 
 #calling grouping function
 groups = grouper(pages, 10)
@@ -42,7 +47,13 @@ for x in range(groups_len):
     json_fragment.update(mine)
 
 #opening active JSON string
-json_data = json.dumps(json_fragment, indent=3)
+sorted_data = sorted(json_fragment, key=lambda x: json_fragment[x]['created_at'], reverse=True)
+json_data = json.dumps(
+    [json_fragment[x] 
+        for x in sorted_data
+    ], indent=3)
+json_loaded = json.loads(json_data)
+
 
 #writing active JSON string to file
 f.write(json_data)
