@@ -1,5 +1,3 @@
-var editor;
-
 $(document).ready(function() {
     $("#scp-tales-table").DataTable( {
         "ajax": {
@@ -12,6 +10,7 @@ $(document).ready(function() {
             { "data": "created_at" },
             { "data": "tags" },
             { "data": "rating" }
-        ]
+        ],
+        responsive: true
     } );
 } );
