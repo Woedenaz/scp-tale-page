@@ -1,0 +1,44 @@
+{
+  "name": "scp-heat",
+  "description": "Find hottest SCPs on the Rise",
+  "version": "1.0.0",
+  "authors": "Woedenaz",
+  "license": "CC-BY-SA-3.0",
+  "repository": {
+    "type": "git"
+  },
+  "browserslist": [
+    "< 100%"
+  ],
+  "devDependencies": {
+    "acorn": "latest",
+    "autoprefixer": "latest",
+    "@babel/core": "^7.5.0",
+    "babel-loader": "latest",
+    "browser-sync": "latest",
+    "cssnano": "latest",
+    "cssnano-preset-default": "latest",
+    "del": "latest",
+    "glob": "latest",
+    "gulp": "latest",
+    "gulp-eslint": "latest",
+    "gulp-imagemin": "latest",
+    "gulp-newer": "latest",
+    "gulp-npm-script-sync": "latest",
+    "gulp-postcss": "latest",
+    "gulp-rename": "latest",
+    "moment": "latest",
+    "sharp": "latest",
+    "webpack": "latest",
+    "webpack-stream": "latest",
+    "postcss-import": "latest",
+    "map-stream": "latest",
+    "jquery": "latest"
+  },
+  "scripts": {
+    "gulp": "node node_modules/gulp/bin/gulp.js"
+  },
+  "dependencies": {
+    "scpper.js": "^3.0.3"
+  }
+}

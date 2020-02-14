@@ -1,0 +1,14 @@
+#config
+src/python/config.py
+
+# NPM
+node_modules/
+package-lock.json
+
+# Misc
+.DS_Store
+.*.swp
+*.bak
+.vscode/
+.bash_profile
+.bash_profileeval
