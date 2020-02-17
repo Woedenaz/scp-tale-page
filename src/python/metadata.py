@@ -51,7 +51,8 @@ page_soup = BeautifulSoup(page_response['body'], 'html.parser')
 table = page_soup.find('table', attrs={'class':'wiki-content-table'})
 headers = [header.text for header in table.find_all('th')]
 data = [{headers[i]: cell.text.strip() for i, cell in enumerate(row.find_all('td'))}
-           for row in table.find_all('tr')]
+    for row in table.find_all('tr')]
+
 #data = []
 #table = page_soup.find('table', attrs={'class':'wiki-content-table'})
 #rows = table.find_all('tr')
@@ -59,8 +60,6 @@ data = [{headers[i]: cell.text.strip() for i, cell in enumerate(row.find_all('td
     #cols = row.find_all('td')
     #cols = [ele.text.strip() for ele in cols]
     #data.append([ele for ele in cols])
-
-metadata_table = ['name','user','type','date']
 
 data = [x for x in data if x]
 
