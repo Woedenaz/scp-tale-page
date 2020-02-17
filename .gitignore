@@ -11,10 +11,11 @@ package-lock.json
 
 # Misc
 .DS_Store
-.*.swp
+*.swp
 *.bak
 .vscode/
 .bash_profile
 .bash_profileeval
 *.pyc
-*.pyc
+src/python/__pycache__/
+src/python/__pycache__/config.cpython-38.pyc
